@@ -102,7 +102,7 @@ var Image = React.createClass({
       };
     } else {
       this.viewConfig = {
-        uiViewClassName: 'RCTImageView',
+        uiViewClassName: 'VideoPlayer',
         validAttributes: ImageViewAttributes,
       };
     }
@@ -169,6 +169,6 @@ var cfg = {
     shouldNotifyLoadEvents: true,
   },
 };
-var RKImage = requireNativeComponent('RCTImageView', Image, cfg);
+var RKImage = requireNativeComponent('VideoPlayer', Image, cfg);
 
 module.exports = Image;
