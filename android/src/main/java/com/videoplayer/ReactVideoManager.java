@@ -1,4 +1,4 @@
-package com.imager;
+package com.videoplayer;
 
 /**
  * Created by azou on 15/02/16.
@@ -33,7 +33,7 @@ public class ReactVideoManager implements ReactPackage {
   @Override
   public List<ViewManager> createViewManagers(ReactApplicationContext reactApplicationContext) {
     return Arrays.<ViewManager>asList(
-        new com.imager.ViewManager()
+        new com.videoplayer.ViewManager()
     );
   }
 }

@@ -1,18 +1,13 @@
-package com.imager;
+package com.videoplayer;
 
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
-import com.facebook.react.views.image.ReactImageManager;
-import com.facebook.react.views.image.ReactImageView;
 import com.facebook.react.uimanager.ThemedReactContext;
 
 import javax.annotation.Nullable;

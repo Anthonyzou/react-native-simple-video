@@ -1,4 +1,4 @@
-package com.imager;
+package com.videoplayer;
 
 import org.junit.Test;
 
