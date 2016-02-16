@@ -1,0 +1,5 @@
+rootProject.name = 'example'
+
+include ':app'
+include ':react-native-video'
+project(':react-native-video').projectDir = file('../../android/')
