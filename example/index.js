@@ -18,7 +18,7 @@ class example extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Video style={styles.image} source={{ uri: "http://ak.picdn.net/shutterstock/videos/3579401/preview/stock-footage-heavy-rain-on-water-shooting-with-high-speed-camera-phantom-flex.webm"}}></Video>
+        <Video style={styles.image} src={ "http://ak.picdn.net/shutterstock/videos/3579401/preview/stock-footage-heavy-rain-on-water-shooting-with-high-speed-camera-phantom-flex.webm"}></Video>
       </View>
     );
   }
