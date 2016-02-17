@@ -6,6 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "react-native-video-player": "git+ssh@bitbucket.org:cmgcanada/android-video-rn.git",
     "react-native": "^0.20.0"
   }
 }

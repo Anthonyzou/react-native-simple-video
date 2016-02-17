@@ -3,7 +3,7 @@ import React,{
   requireNativeComponent, Component, PropTypes, View
 } from 'react-native';
 
-export default class PDFView extends Component {
+export default class VideoPlayer extends Component {
   static propTypes = {
     ...View.propTypes,
     src: PropTypes.string.isRequired
@@ -26,6 +26,6 @@ export default class PDFView extends Component {
   }
 }
 
-const VideoView = requireNativeComponent('VideoPlayer', PDFView, {
+const VideoView = requireNativeComponent('VideoPlayer', VideoPlayer, {
   nativeOnly: {onChange: true}
 });

@@ -12,7 +12,7 @@ import React, {
   Dimensions,
   // Image,
 } from 'react-native';
-import Video from './video.js'
+import Video from 'react-native-video-player'
 
 class example extends Component {
   render() {
