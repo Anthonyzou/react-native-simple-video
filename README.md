@@ -2,15 +2,12 @@
 
 A simple video player with default video player default configurations.
 
----
-TeamLockr video player
-Team Lockr video player for react native
-
-These are functions created by the TeamLockr Team created for the TeamLockr platform.
----
+##### Props:
+| Property | Type | Default | Description |
+|---------------|----------|--------------|----------------------------------------------------------------|
+| src | string | null | required html src |
 
 ## Include in your App
-
 
 Installation
 ------------
@@ -49,3 +46,13 @@ public class MainActivity extends ReactActivity {
       );
     }
 ```
+
+
+---
+
+TeamLockr video player
+Team Lockr video player for react native
+
+These are functions created by the TeamLockr Team created for the TeamLockr platform.
+
+---
