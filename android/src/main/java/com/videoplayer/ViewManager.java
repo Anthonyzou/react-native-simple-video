@@ -48,7 +48,6 @@ public class ViewManager extends SimpleViewManager<VideoView> {
     // In JS this is Image.props.source.uri
     @ReactProp(name = "src")
     public void setSource(final VideoView view, @Nullable String source) {
-        Log.d("URI video", source);
         view.setVideoURI(Uri.parse(source));
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             // Close the progress bar and play the video
@@ -57,15 +56,16 @@ public class ViewManager extends SimpleViewManager<VideoView> {
                 final int height = mp.getVideoHeight();
                 mediaPlayer = mp;
                 videoView.start();
+
                 WritableMap event = Arguments.createMap();
                 event.putInt("width", width);
                 event.putInt("height", height);
                 ((ReactContext)view.getContext())
-                    .getJSModule(RCTEventEmitter.class)
-                    .receiveEvent(
-                            view.getId(),
-                            "topChange",
-                            event);
+                        .getJSModule(RCTEventEmitter.class)
+                        .receiveEvent(
+                                view.getId(),
+                                "topChange",
+                                event);
             }
         });
     }
