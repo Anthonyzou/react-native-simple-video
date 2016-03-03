@@ -26,7 +26,7 @@ import javax.annotation.Nullable;
  * Created by azou on 15/02/16.
  */
 public class ViewManager extends SimpleViewManager<VideoView> {
-    private VideoView videoView;
+
     private MediaController mediaControls;
     private MediaPlayer mediaPlayer;
 
@@ -38,24 +38,23 @@ public class ViewManager extends SimpleViewManager<VideoView> {
     @Override
     public VideoView createViewInstance(ThemedReactContext reactContext) {
         mediaControls = new MediaController(reactContext);
-        videoView = new VideoView(reactContext);
+        VideoView videoView = new VideoView(reactContext);
         videoView.setMediaController(mediaControls);
         videoView.requestFocus();
-        videoView.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
         return videoView;
     }
 
     // In JS this is Image.props.source.uri
     @ReactProp(name = "src")
-    public void setSource(final VideoView view, @Nullable String source) {
+    public void setSource(final VideoView view, @Nullable final String source) {
         view.setVideoURI(Uri.parse(source));
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        view.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             // Close the progress bar and play the video
             public void onPrepared(final MediaPlayer mp) {
                 final int width = mp.getVideoWidth();
                 final int height = mp.getVideoHeight();
                 mediaPlayer = mp;
-                videoView.start();
+                view.start();
 
                 WritableMap event = Arguments.createMap();
                 event.putInt("width", width);
@@ -68,6 +67,7 @@ public class ViewManager extends SimpleViewManager<VideoView> {
                                 event);
             }
         });
+
     }
 
 
