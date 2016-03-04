@@ -27,8 +27,6 @@ import javax.annotation.Nullable;
  */
 public class ViewManager extends SimpleViewManager<VideoView> {
 
-    private MediaController mediaControls;
-    private MediaPlayer mediaPlayer;
 
     @Override
     public String getName() {
@@ -37,7 +35,7 @@ public class ViewManager extends SimpleViewManager<VideoView> {
 
     @Override
     public VideoView createViewInstance(ThemedReactContext reactContext) {
-        mediaControls = new MediaController(reactContext);
+        MediaController mediaControls = new MediaController(reactContext);
         VideoView videoView = new VideoView(reactContext);
         videoView.setMediaController(mediaControls);
         videoView.requestFocus();
@@ -53,13 +51,12 @@ public class ViewManager extends SimpleViewManager<VideoView> {
             public void onPrepared(final MediaPlayer mp) {
                 final int width = mp.getVideoWidth();
                 final int height = mp.getVideoHeight();
-                mediaPlayer = mp;
                 view.start();
 
                 WritableMap event = Arguments.createMap();
                 event.putInt("width", width);
                 event.putInt("height", height);
-                ((ReactContext)view.getContext())
+                ((ReactContext) view.getContext())
                         .getJSModule(RCTEventEmitter.class)
                         .receiveEvent(
                                 view.getId(),
@@ -68,6 +65,11 @@ public class ViewManager extends SimpleViewManager<VideoView> {
             }
         });
 
+    }
+
+    @ReactProp(name = "start")
+    public void setStart(VideoView view, @Nullable int source) {
+        view.seekTo(source);
     }
 
 

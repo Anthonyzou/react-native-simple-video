@@ -3,10 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "setupDev" : "mkdir node_modules/react-native-simple-video-player/; rm -rf node_modules/react-native-simple-video-player/index.js node_modules/react-native-simple-video-player/android; ln -s  ../../../android/ node_modules/react-native-simple-video-player/android;ln -s  ../../../index.js node_modules/react-native-simple-video-player/index.js; cp ../package.json node_modules/react-native-simple-video-player/"
   },
   "dependencies": {
-    "react-native-video-player": "git+ssh@bitbucket.org:cmgcanada/android-video-rn.git",
-    "react-native": "^0.20.0"
+    "react-native-simple-video-player": "git+https@github.com:Anthonyzou/react-native-simple-video.git",
+    "react-native": "^0.21.0"
   }
 }

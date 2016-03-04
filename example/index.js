@@ -12,13 +12,13 @@ import React, {
   Dimensions,
   // Image,
 } from 'react-native';
-import Video from 'react-native-video-player'
+import Video from './video.js';
 
 class example extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Video style={styles.image} src={ "http://ak.picdn.net/shutterstock/videos/3579401/preview/stock-footage-heavy-rain-on-water-shooting-with-high-speed-camera-phantom-flex.webm"}></Video>
+        <Video src={ "http://ak.picdn.net/shutterstock/videos/3579401/preview/stock-footage-heavy-rain-on-water-shooting-with-high-speed-camera-phantom-flex.webm"}/>
       </View>
     );
   }
@@ -33,8 +33,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   image:{
-    width: width,
-    flex:1,
   }
 });
 
