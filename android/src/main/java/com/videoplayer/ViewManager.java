@@ -67,12 +67,6 @@ public class ViewManager extends SimpleViewManager<VideoView> {
 
     }
 
-    @ReactProp(name = "start")
-    public void setStart(VideoView view, @Nullable int source) {
-        view.seekTo(source);
-    }
-
-
     @ReactProp(name = "seek")
     public void setSeek(VideoView view, @Nullable int source) {
         view.seekTo(source);
