@@ -2,22 +2,20 @@ package com.videoplayer;
 
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.util.Log;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.os.SystemClock;
 import android.widget.MediaController;
-import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
 import com.facebook.react.bridge.Arguments;
-import com.facebook.react.bridge.Callback;
-import com.facebook.react.bridge.ReactContext;
-import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.SimpleViewManager;
-import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.ThemedReactContext;
-import com.facebook.react.uimanager.events.RCTEventEmitter;
+import com.facebook.react.uimanager.UIManagerModule;
+import com.facebook.react.uimanager.annotations.ReactProp;
+import com.facebook.react.uimanager.events.EventDispatcher;
+
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
@@ -27,7 +25,7 @@ import javax.annotation.Nullable;
  */
 public class ViewManager extends SimpleViewManager<VideoView> {
 
-
+    private EventDispatcher mEventDispatcher;
     @Override
     public String getName() {
         return "VideoPlayer";
@@ -35,6 +33,7 @@ public class ViewManager extends SimpleViewManager<VideoView> {
 
     @Override
     public VideoView createViewInstance(ThemedReactContext reactContext) {
+        mEventDispatcher = reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher();
         MediaController mediaControls = new MediaController(reactContext);
         VideoView videoView = new VideoView(reactContext);
         videoView.setMediaController(mediaControls);
@@ -56,12 +55,17 @@ public class ViewManager extends SimpleViewManager<VideoView> {
                 WritableMap event = Arguments.createMap();
                 event.putInt("width", width);
                 event.putInt("height", height);
-                ((ReactContext) view.getContext())
-                        .getJSModule(RCTEventEmitter.class)
-                        .receiveEvent(
-                                view.getId(),
-                                "topChange",
-                                event);
+                mEventDispatcher.dispatchEvent(
+                        new VideoEvent(view.getId(), SystemClock.uptimeMillis(), VideoEvent.ON_LOAD)
+                                .setPayLoad(event)
+                );
+
+//                ((ReactContext) view.getContext())
+//                        .getJSModule(RCTEventEmitter.class)
+//                        .receiveEvent(
+//                                view.getId(),
+//                                "topChange",
+//                                event);
             }
         });
 
@@ -70,5 +74,13 @@ public class ViewManager extends SimpleViewManager<VideoView> {
     @ReactProp(name = "seek")
     public void setSeek(VideoView view, @Nullable int source) {
         view.seekTo(source);
+    }
+
+    @Override
+    public @Nullable
+    Map getExportedCustomDirectEventTypeConstants() {
+        return MapBuilder.of(
+                VideoEvent.eventNameForType(VideoEvent.ON_LOAD), MapBuilder.of("registrationName", "onLoad")
+        );
     }
 }

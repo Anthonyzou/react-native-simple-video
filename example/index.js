@@ -3,6 +3,7 @@
  * https://github.com/facebook/react-native
  */
 'use strict';
+
 import React, {
   AppRegistry,
   Component,
@@ -10,8 +11,8 @@ import React, {
   Text,
   View,
   Dimensions,
-  // Image,
 } from 'react-native';
+
 import Video from './video.js';
 
 class example extends Component {
@@ -24,7 +25,7 @@ class example extends Component {
   }
 }
 
-var {height, width} = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,

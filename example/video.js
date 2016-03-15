@@ -12,7 +12,7 @@ export default class VideoPlayer extends Component {
     ...View.propTypes,
     src: PropTypes.string.isRequired,
     seek: PropTypes.number,
-
+    onLoad: PropTypes.func,
   };
 
 
@@ -22,10 +22,10 @@ export default class VideoPlayer extends Component {
       style : {width: 1, height: 1 }
     }
 
-    this._onChange = this._onChange.bind(this);
+    this.onLoad = this.onLoad.bind(this);
   }
 
-  _onChange(event: Event) {
+  onLoad(event: Event){
     this.setState({style:event.nativeEvent})
   }
 
@@ -35,7 +35,7 @@ export default class VideoPlayer extends Component {
       width: Math.min(this.state.style.width, width ),
       height: Math.min(this.state.style.height, height )
     }
-    return <VideoView style={dimens} onChange={this._onChange} {...this.props}/>;
+    return <VideoView style={dimens} onLoad={this.onLoad} {...this.props}/>;
   }
 }
 
