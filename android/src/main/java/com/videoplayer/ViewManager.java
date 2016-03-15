@@ -34,9 +34,7 @@ public class ViewManager extends SimpleViewManager<VideoView> {
     @Override
     public VideoView createViewInstance(ThemedReactContext reactContext) {
         mEventDispatcher = reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher();
-        MediaController mediaControls = new MediaController(reactContext);
         VideoView videoView = new VideoView(reactContext);
-        videoView.setMediaController(mediaControls);
         videoView.requestFocus();
         return videoView;
     }
@@ -59,13 +57,6 @@ public class ViewManager extends SimpleViewManager<VideoView> {
                         new VideoEvent(view.getId(), SystemClock.uptimeMillis(), VideoEvent.ON_LOAD)
                                 .setPayLoad(event)
                 );
-
-//                ((ReactContext) view.getContext())
-//                        .getJSModule(RCTEventEmitter.class)
-//                        .receiveEvent(
-//                                view.getId(),
-//                                "topChange",
-//                                event);
             }
         });
 
@@ -74,6 +65,16 @@ public class ViewManager extends SimpleViewManager<VideoView> {
     @ReactProp(name = "seek")
     public void setSeek(VideoView view, @Nullable int source) {
         view.seekTo(source);
+    }
+
+    @ReactProp(name="controls")
+    public void controls(VideoView view, @Nullable boolean enabled){
+        if(enabled) {
+            MediaController mediaControls = new MediaController(view.getContext());
+            view.setMediaController(mediaControls);
+        }
+        else
+            view.setMediaController(null);
     }
 
     @Override
