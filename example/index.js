@@ -11,6 +11,7 @@ import React, {
   Text,
   View,
   Dimensions,
+  ToastAndroid,
 } from 'react-native';
 
 import Video from './video.js';
@@ -19,7 +20,11 @@ class example extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Video src={ "http://ak.picdn.net/shutterstock/videos/3579401/preview/stock-footage-heavy-rain-on-water-shooting-with-high-speed-camera-phantom-flex.webm"}/>
+        <Video
+          onLoad={()=>{
+            ToastAndroid.show('loaded', 2000)
+          }}
+          src={ "http://ak.picdn.net/shutterstock/videos/3579401/preview/stock-footage-heavy-rain-on-water-shooting-with-high-speed-camera-phantom-flex.webm"}/>
       </View>
     );
   }

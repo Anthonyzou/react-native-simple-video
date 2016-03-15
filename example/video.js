@@ -22,11 +22,11 @@ export default class VideoPlayer extends Component {
       style : {width: 1, height: 1 }
     }
 
-    this.onLoad = this.onLoad.bind(this);
   }
 
   onLoad(event: Event){
     this.setState({style:event.nativeEvent})
+    if(this.props.onLoad) this.props.onLoad()
   }
 
   render() {
@@ -35,7 +35,7 @@ export default class VideoPlayer extends Component {
       width: Math.min(this.state.style.width, width ),
       height: Math.min(this.state.style.height, height )
     }
-    return <VideoView style={dimens} onLoad={this.onLoad} {...this.props}/>;
+    return <VideoView {...this.props} style={dimens} onLoad={this.onLoad.bind(this)} />;
   }
 }
 

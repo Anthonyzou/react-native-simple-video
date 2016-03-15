@@ -43,7 +43,7 @@ public class VideoEvent extends Event<VideoEvent>{
             case ON_LOAD:
                 return "topLoad";
             default:
-                throw new IllegalStateException("Invalid image event: " + Integer.toString(eventType));
+                throw new IllegalStateException("Invalid video event: " + Integer.toString(eventType));
         }
     }
 
