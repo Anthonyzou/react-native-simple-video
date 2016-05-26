@@ -1,11 +1,15 @@
 
-import React,{
+import {
   requireNativeComponent,
-  Component,
-  PropTypes,
   View,
   Dimensions,
 } from 'react-native';
+
+import React,{
+  Component,
+  PropTypes,
+} from 'react';
+
 
 export default class VideoPlayer extends Component {
   static propTypes = {
