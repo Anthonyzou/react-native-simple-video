@@ -59,7 +59,6 @@ public class ViewManager extends SimpleViewManager<VideoView> {
                 );
             }
         });
-
     }
 
     @ReactProp(name = "seek")
